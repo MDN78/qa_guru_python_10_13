@@ -6,8 +6,8 @@ __pycache__/
 .idea/
 .venv/
 #allure
-allure_results
-tests/allure_results
+allure-results
+tests/allure-results
 # C extensions
 *.so
 
