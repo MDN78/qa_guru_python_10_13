@@ -15,7 +15,9 @@ class RegistrationPage:
             have.size_greater_than_or_equal(3)
         )
         browser.all("[id^=google_ads][id$=container__]").perform(command.js.remove)
-        browser.element('[aria-label="Consent"]').click()
+        # checking modal window
+        if browser.element('[aria-label="Consent"]').matching(be.visible):
+            browser.element('[aria-label="Consent"]').click()
 
     @allure.step('Input first name {value}')
     def fill_first_name(self, value):
