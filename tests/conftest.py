@@ -3,16 +3,24 @@ from selene import browser
 from selenium import webdriver
 import allure
 from selenium.webdriver.chrome.options import Options
+from dotenv import load_dotenv
 from utils import attach
 
 DEFAULT_BROWSER_VERSION = '100.0'
 
+
+@allure.step('Select browser version')
 def pytest_addoption(parser):
     parser.addoption(
         '--browser_version',
         default='100.0'
     )
-# если надо firefox - `pytest tests --browser_version=100.0`
+
+
+@pytest.fixture(scope='session', autouse=True)
+def load_env():
+    load_dotenv()
+
 
 @pytest.fixture(scope="function", autouse=True)
 def driver_configuration(request):
