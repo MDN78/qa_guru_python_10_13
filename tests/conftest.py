@@ -1,14 +1,22 @@
 import pytest
 from selene import browser
 from selenium import webdriver
-from utils import attach
 import allure
 from selenium.webdriver.chrome.options import Options
+from utils import attach
 
+
+def pytest_addoption(parser):
+    parser.addoption(
+        '--browser_version',
+        default='100.0'
+    )
+# если надо firefox - `pytest tests --browser_version=100.0`
 
 @pytest.fixture(scope="function", autouse=True)
-def driver_configuration():
+def driver_configuration(request):
     with allure.step('Driver configuration strategy'):
+        browser_version = request.config.getoption('--browser_version')
         driver_options = webdriver.ChromeOptions()
         driver_options.page_load_strategy = 'eager'
         browser.config.driver_options = driver_options
@@ -17,8 +25,8 @@ def driver_configuration():
         browser.config.base_url = "https://demoqa.com"
         options = Options()
         selenoid_capabilities = {
-            "browserName": "chrome",
-            "browserVersion": "100.0",
+            "browserName": 'chrome',
+            "browserVersion": browser_version,
             "selenoid:options": {
                 "enableVNC": True,
                 "enableVideo": True
@@ -33,6 +41,7 @@ def driver_configuration():
         browser.config.driver = driver
 
     yield
+
     with allure.step('Add screenshot'):
         attach.add_screenshot(browser)
 

@@ -18,3 +18,4 @@
 
 активируем его `source .venv/bin/activate`
 
+запуск в такой конструкции через терминал `pytest tests --browser=chrome`
