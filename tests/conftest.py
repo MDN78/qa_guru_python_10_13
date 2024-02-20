@@ -5,6 +5,7 @@ import allure
 from selenium.webdriver.chrome.options import Options
 from utils import attach
 
+DEFAULT_BROWSER_VERSION = '100.0'
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -17,6 +18,7 @@ def pytest_addoption(parser):
 def driver_configuration(request):
     with allure.step('Driver configuration strategy'):
         browser_version = request.config.getoption('--browser_version')
+        browser_version = browser_version if browser_version != '' else DEFAULT_BROWSER_VERSION
         driver_options = webdriver.ChromeOptions()
         driver_options.page_load_strategy = 'eager'
         browser.config.driver_options = driver_options
