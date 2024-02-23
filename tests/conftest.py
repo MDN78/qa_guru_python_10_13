@@ -3,9 +3,10 @@ import os
 import pytest
 from selene import browser
 from selenium import webdriver
+from selenium.webdriver import ChromeOptions
 import allure
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
 from utils import attach
 
