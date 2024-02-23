@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from utils import attach
 
 DEFAULT_CHROME_VERSION = '100.0'
-DEFAULT_FIREFOX_VERSION = '98   '
+DEFAULT_FIREFOX_VERSION = '98'
 
 
 @allure.step('Select browser version')
