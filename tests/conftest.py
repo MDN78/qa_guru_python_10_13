@@ -39,9 +39,9 @@ def driver_configuration(request):
         elif browser_name.lower() == 'firefox':
             browser_version = request.config.getoption('--browser_version')
             browser_version = browser_version if browser_version != '' else DEFAULT_FIREFOX_VERSION
-            options = Options()
-            options.page_load_strategy = 'eager'
-            browser.config.driver_options = options
+            driver_options = Options()
+            driver_options.page_load_strategy = 'eager'
+            browser.config.driver_options = driver_options
         browser.config.window_width = 1920
         browser.config.window_height = 1080
         browser.config.base_url = "https://demoqa.com"
