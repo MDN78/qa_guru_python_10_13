@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from utils import attach
 
 DEFAULT_CHROME_VERSION = '100.0'
-DEFAULT_FIREFOX_VERSION = '99'
+DEFAULT_FIREFOX_VERSION = '98   '
 
 
 @allure.step('Select browser version')
@@ -35,6 +35,8 @@ def driver_configuration(request):
             driver_options.page_load_strategy = 'eager'
             browser.config.driver_options = driver_options
         elif browser_name.lower() == 'firefox':
+            browser_version = request.config.getoption('--browser_version')
+            browser_version = browser_version if browser_version != '' else DEFAULT_FIREFOX_VERSION
             driver_options = webdriver.ChromeOptions()
             driver_options.page_load_strategy = 'eager'
             browser.config.driver_options = driver_options
