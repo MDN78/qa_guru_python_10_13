@@ -32,17 +32,21 @@ def driver_configuration(request):
         browser_name = request.config.getoption('--browser_name')
         # with allure.step('Select Driver - type and version'):
         if browser_name.lower() == 'chrome':
-            browser_version = request.config.getoption('--browser_version')
-            browser_version = browser_version if browser_version != '' else DEFAULT_CHROME_VERSION
+            # browser_version = request.config.getoption('--browser_version')
+            # browser_version = browser_version if browser_version != '' else DEFAULT_CHROME_VERSION
             driver_options = webdriver.ChromeOptions()
             driver_options.page_load_strategy = 'eager'
             browser.config.driver_options = driver_options
         elif browser_name.lower() == 'firefox':
-            browser_version = request.config.getoption('--browser_version')
-            browser_version = browser_version if browser_version != '' else DEFAULT_FIREFOX_VERSION
+            # browser_version = request.config.getoption('--browser_version')
+            # browser_version = browser_version if browser_version != '' else DEFAULT_FIREFOX_VERSION
             driver_options = Options()
             driver_options.page_load_strategy = 'eager'
             browser.config.driver_options = driver_options
+
+        browser_version = request.config.getoption('--browser_version')
+        browser_version = browser_version if browser_version != '' else DEFAULT_CHROME_VERSION
+
         browser.config.window_width = 1920
         browser.config.window_height = 1080
         browser.config.base_url = "https://demoqa.com"
