@@ -14,7 +14,7 @@ DEFAULT_FIREFOX_VERSION = '98.0'
 
 @allure.step('Select browser version')
 def pytest_addoption(parser):
-    parser.addoption('--browser', action='store', default='chrome', help="Choose browser name.")
+    parser.addoption('--browser_name', action='store', default='chrome', help="Choose browser name.")
     parser.addoption('--browser_version', default='100.0',
                      help='Choose browser version. For Chrome: 99.0 or 100.0. For Firefox: 97.0 or 98.0.')
 
@@ -27,7 +27,7 @@ def load_env():
 @pytest.fixture(scope="function", autouse=True)
 def driver_configuration(request):
     with allure.step('Driver configuration strategy'):
-        browser_name = request.config.getoption('--browser')
+        browser_name = request.config.getoption('--browser_name')
         # with allure.step('Select Driver - type and version'):
         if browser_name.lower() == 'chrome':
             browser_version = request.config.getoption('--browser_version')
