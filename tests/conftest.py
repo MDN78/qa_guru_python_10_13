@@ -4,7 +4,7 @@ import pytest
 from selene import browser
 from selenium import webdriver
 import allure
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 from dotenv import load_dotenv
 from utils import attach
 
