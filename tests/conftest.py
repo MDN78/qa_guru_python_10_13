@@ -6,7 +6,8 @@ from selenium import webdriver
 from selenium.webdriver import ChromeOptions
 import allure
 from selenium.webdriver.firefox.options import Options
-# from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import FirefoxOptions
 from dotenv import load_dotenv
 from utils import attach
 
@@ -30,27 +31,30 @@ def load_env():
 def driver_configuration(request):
     with allure.step('Driver configuration strategy'):
         browser_name = request.config.getoption('--browser_name')
+        browser_version = request.config.getoption('--browser_version')
+        browser_version = browser_version if browser_version != '' else DEFAULT_CHROME_VERSION
         # with allure.step('Select Driver - type and version'):
         if browser_name.lower() == 'chrome':
             # browser_version = request.config.getoption('--browser_version')
             # browser_version = browser_version if browser_version != '' else DEFAULT_CHROME_VERSION
-            driver_options = webdriver.ChromeOptions()
+            driver_options = ChromeOptions()
             driver_options.page_load_strategy = 'eager'
             browser.config.driver_options = driver_options
         elif browser_name.lower() == 'firefox':
             # browser_version = request.config.getoption('--browser_version')
             # browser_version = browser_version if browser_version != '' else DEFAULT_FIREFOX_VERSION
-            driver_options = Options()
+            # driver_options = Options()
+            driver_options = FirefoxOptions()
             driver_options.page_load_strategy = 'eager'
             browser.config.driver_options = driver_options
 
-        browser_version = request.config.getoption('--browser_version')
-        browser_version = browser_version if browser_version != '' else DEFAULT_CHROME_VERSION
+        # browser_version = request.config.getoption('--browser_version')
+        # browser_version = browser_version if browser_version != '' else DEFAULT_CHROME_VERSION
 
         browser.config.window_width = 1920
         browser.config.window_height = 1080
         browser.config.base_url = "https://demoqa.com"
-        options = Options()
+        # options = Options()
         selenoid_capabilities = {
             "browserName": browser_name,
             "browserVersion": browser_version,
@@ -60,12 +64,12 @@ def driver_configuration(request):
             }
         }
 
-        options.capabilities.update(selenoid_capabilities)
+        driver_options.capabilities.update(selenoid_capabilities)
         login = os.getenv('LOGIN')
         password = os.getenv('PASSWORD')
         driver = webdriver.Remote(
             command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
-            options=options)
+            options=driver_options)
 
         browser.config.driver = driver
 
