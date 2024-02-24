@@ -9,9 +9,7 @@ from selenium.webdriver import FirefoxOptions
 from dotenv import load_dotenv
 from utils import attach
 
-DEFAULT_CHROME_VERSION = '100.0'
-DEFAULT_FIREFOX_VERSION = '98.0'
-
+DEFAULT_VERSION = '100.0'
 
 @allure.step('Select browser version')
 def pytest_addoption(parser):
@@ -31,7 +29,7 @@ def driver_configuration(request):
     with allure.step('Driver configuration strategy'):
         browser_name = request.config.getoption('--browser_name')
         browser_version = request.config.getoption('--browser_version')
-        browser_version = browser_version if browser_version != '' else DEFAULT_CHROME_VERSION
+        browser_version = browser_version if browser_version != '' else DEFAULT_VERSION
         with allure.step('Select Driver loading strategy'):
             if browser_name.lower() == 'chrome':
                 driver_options = ChromeOptions()
