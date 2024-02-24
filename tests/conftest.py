@@ -52,7 +52,7 @@ def driver_configuration(request):
         browser.config.base_url = "https://demoqa.com"
         options = Options()
         selenoid_capabilities = {
-            "browserName": 'chrome',
+            "browserName": browser_name,
             "browserVersion": browser_version,
             "selenoid:options": {
                 "enableVNC": True,
