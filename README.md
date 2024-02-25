@@ -12,6 +12,12 @@
 
 6. Спрятать логин/пароль к удаленному браузеру в .env файл
 
+## вторая ветка - расширенные параметры  - два браузера + версии
+
+[jenkins_new_options](https://github.com/MDN78/qa_guru_python_10_13/tree/jenkins_new_options)
+
+
+
 ### доп информация
 
 [wiki info](https://github.com/MDN78/qa_guru_python_10_13/wiki)
