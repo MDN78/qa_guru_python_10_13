@@ -11,6 +11,7 @@ from utils import attach
 DEFAULT_BROWSER_VERSION = '100.0'
 
 
+
 @allure.step('Select browser version')
 def pytest_addoption(parser):
     parser.addoption(
