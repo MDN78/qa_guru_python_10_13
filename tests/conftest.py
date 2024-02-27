@@ -11,6 +11,7 @@ from utils import attach
 
 DEFAULT_VERSION = '100.0'
 
+
 @allure.step('Select browser version')
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome', help="Choose browser name.")
@@ -43,7 +44,7 @@ def driver_configuration(request):
         browser.config.window_width = 1920
         browser.config.window_height = 1080
         browser.config.base_url = "https://demoqa.com"
-        # options = Options()
+
         selenoid_capabilities = {
             "browserName": browser_name,
             "browserVersion": browser_version,

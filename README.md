@@ -16,3 +16,4 @@
 
 [wiki info](https://github.com/MDN78/qa_guru_python_10_13/wiki)
 
+[allure notifications](https://github.com/qa-guru/allure-notifications)
