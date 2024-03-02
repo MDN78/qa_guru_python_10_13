@@ -1,9 +1,19 @@
+import os
 import types
+import datetime
+from demoqa_tests import resource
 
 
 def humanify(name: str):
     import re
     return ' '.join(re.split('_+', name))
+
+
+def write_log_to_file(data: str):
+    log_file = os.getenv('LOG_FILE')
+    file_name = (resource.path_log_file(log_file) + ".log")
+    with open(file_name, 'a', encoding='utf=8') as logger_file:
+        logger_file.write(data + '\n')
 
 
 def step(fn):
@@ -25,8 +35,11 @@ def step(fn):
             else ''
         )
 
-        print(
-            (f'[{args[0].__class__.__name__}] ' if is_method else '')
+        write_log_to_file(
+            f"\n-----\n"
+            + f"Start time: {str(datetime.datetime.now())}\n"
+            + '\n'
+            + (f'[{args[0].__class__.__name__}] ' if is_method else '')
             + humanify(fn.__name__)
             + args_and_kwargs_string
         )

@@ -77,5 +77,8 @@ def driver_configuration(request):
     with allure.step('Add video'):
         attach.add_video(browser)
 
+    with allure.step('Add log file'):
+        attach.add_log_file()
+
     with allure.step('Close driver'):
         browser.quit()

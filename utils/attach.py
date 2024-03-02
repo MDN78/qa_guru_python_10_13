@@ -1,6 +1,8 @@
+import os
+
 import allure
 from allure_commons.types import AttachmentType
-
+from demoqa_tests.resource import path_log_file
 
 # Скриншоты
 def add_screenshot(browser):
@@ -27,3 +29,9 @@ def add_video(browser):
            + video_url \
            + "' type='video/mp4'></video></body></html>"
     allure.attach(html, 'video_' + browser.driver.session_id, AttachmentType.HTML, '.html')
+
+
+def add_log_file():
+    log_file = os.getenv('LOG_FILE')
+    current_log_file = path_log_file(f'{log_file}.log')
+    allure.attach.file(current_log_file, 'logs', attachment_type=AttachmentType.JSON)
