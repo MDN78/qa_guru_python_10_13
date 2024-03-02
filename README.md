@@ -12,8 +12,13 @@
 
 6. Спрятать логин/пароль к удаленному браузеру в .env файл
 
+### добавил логирование - файл `logger.py` и добавил аттач файла в отчет аллюр
+
+
+
 ### доп информация
 
 [wiki info](https://github.com/MDN78/qa_guru_python_10_13/wiki)
 
 [allure notifications](https://github.com/qa-guru/allure-notifications)
+
