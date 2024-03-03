@@ -14,7 +14,22 @@
 
 ### добавил логирование - файл `logger.py` и добавил аттач файла в отчет аллюр
 
+## Уведомление в Телеграмм локально:  
+Добавил локальную нотификацию - создал папку `notifications`  
+в нее добавил два файла скачанный [allure-notification](https://github.com/qa-guru/allure-notifications/releases)  
+файл `config.json` и заполнил под нужный мессенджер  
+Запустил локально тесты стандартной командой  
+далее в терминале 
+```commandline
+allure generate allure-results 
+```
 
+затем  
+```commandline
+java "-DconfigFile=notifications/config.json" -jar notifications/allure-notifications-4.6.1.jar 
+```
+
+И нотификация прошла
 
 ### доп информация
 
