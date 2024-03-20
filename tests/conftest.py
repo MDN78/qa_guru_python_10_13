@@ -16,7 +16,7 @@ DEFAULT_BROWSER_VERSION = '100.0'
 def pytest_addoption(parser):
     parser.addoption(
         '--browser_version',
-        default='100.0'
+        default='122.0'
     )
 
 @allure.step('Load env')
@@ -50,7 +50,7 @@ def driver_configuration(request):
         login = os.getenv('LOGIN')
         password = os.getenv('PASSWORD')
         driver = webdriver.Remote(
-            command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
+            command_executor="http://localhost:4444/wd/hub",
             options=options)
 
         browser.config.driver = driver
